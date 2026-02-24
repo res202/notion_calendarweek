@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <title>Wochennummer</title>
     <style>
-        /* Minimalistisches Design für das Quadrat */
+        /* Container, um das Quadrat horizontal zu zentrieren */
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px; /* Abstand nach oben */
+        }
+
+        /* Das Quadrat */
         .wochen-quadrat {
-            width: 100px;
-            height: 100px;
-            border: 2px solid #333; /* Rand */
+            width: 120px; /* Etwas breiter für den Text "KW" */
+            height: 120px;
+            border: 2px solid #333;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: sans-serif;
-            font-size: 2rem;
+            font-size: 1.5rem; /* Schriftgröße leicht angepasst */
             font-weight: bold;
             color: #333;
         }
@@ -21,13 +28,14 @@
 </head>
 <body>
 
-    <!-- Das Quadrat, in dem die Zahl erscheint -->
-    <div id="kw-anzeige" class="wochen-quadrat">..</div>
+    <div class="wrapper">
+        <div id="kw-anzeige" class="wochen-quadrat">..</div>
+    </div>
 
     <script>
         function getKalenderwoche() {
             const heute = new Date();
-            // ISO-8601 Wochenberechnung
+            // ISO-8601 Standard Berechnung
             const d = new Date(Date.UTC(heute.getFullYear(), heute.getMonth(), heute.getDate()));
             const dayNum = d.getUTCDay() || 7;
             d.setUTCDate(d.getUTCDate() + 4 - dayNum);
@@ -35,8 +43,8 @@
             return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
         }
 
-        // Zahl in das HTML-Element schreiben
-        document.getElementById('kw-anzeige').innerText = getKalenderwoche();
+        // Zahl mit "KW" Präfix in das HTML-Element schreiben
+        document.getElementById('kw-anzeige').innerText = "KW " + getKalenderwoche();
     </script>
 
 </body>
