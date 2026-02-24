@@ -47,8 +47,8 @@ td {
   height: 48px;
   text-align: center;
   vertical-align: middle;
-  border-right: 1px solid #dcdcff;
-  border-top: 1px solid #dcdcff;
+  border-right: 1px solid #3A3838;
+  border-top: 1px solid #3A3838;
   width: 14.28571429%;
 }
 td.not-current {
