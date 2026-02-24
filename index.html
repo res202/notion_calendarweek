@@ -3,34 +3,19 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Endless calendar</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Calendar</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'><link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto:400|Roboto+Condensed:400|Fjalla+One:400'>
+<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
 
   </head>
     
   <body>
-  <div class="container">
-  </div>
-
-  <script src="dom.js"></script>
-  <script src="cal-utils.js"></script>
-  <script src="cal.js"></script>
-
-  <svg id="scroll_animation" viewBox="0 0 512 512" xml:space="preserve">
-
-    <g fill="none" stroke-width="20" stroke="#71C386" stroke-linecap="round" stroke-linejoin="round">
-      <path id="arrow_up" d="M 100 200 v -100 m -50 50 l 50 -50 50 50" />
-      <path id="arrow_dn" d="M 100 250 v 100 m -50 -50 l 50 50 50 -50" />
-    </g>
-
-    <g id="finger">
-      <path fill="#FDC794" d="M230,170a120 120 0 1 1 240,0v190a120 120 0 1 1 -240,0z" />
-      <path fill="#FFE9EC" d="M265 255v-85a85 85 0 1 1 170,0v86h-170z" />
-      <path stroke="#F9A671" d="M265,345h170m-170,35h170" stroke-linecap="round" stroke-width="15" />
-      <path style="fill:#FFFFFF;" d="M265,255a85 50 0 1 1 170,0z" />
-    </g>
-
-  </svg>
+  <div class="calendar-wrapper">
+  <button id="btnPrev" type="button">Prev</button>
+	  <button id="btnNext" type="button">Next</button>
+  <div id="divCal"></div>
+</div>
     <script  src="./script.js"></script>
 
   </body>
