@@ -1,23 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="de">
+<head>
     <meta charset="UTF-8">
-    <title>Calendar</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'><link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
-<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto:400|Roboto+Condensed:400|Fjalla+One:400'>
-<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+    <title>Wochennummer</title>
+    <style>
+        /* Minimalistisches Design für das Quadrat */
+        .wochen-quadrat {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333; /* Rand */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
 
-  </head>
-    
-  <body>
-  <div class="calendar-wrapper">
-  <button id="btnPrev" type="button">Prev</button>
-	  <button id="btnNext" type="button">Next</button>
-  <div id="divCal"></div>
-</div>
-    <script  src="./script.js"></script>
+    <!-- Das Quadrat, in dem die Zahl erscheint -->
+    <div id="kw-anzeige" class="wochen-quadrat">..</div>
 
-  </body>
-  
+    <script>
+        function getKalenderwoche() {
+            const heute = new Date();
+            // ISO-8601 Wochenberechnung
+            const d = new Date(Date.UTC(heute.getFullYear(), heute.getMonth(), heute.getDate()));
+            const dayNum = d.getUTCDay() || 7;
+            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+
+        // Zahl in das HTML-Element schreiben
+        document.getElementById('kw-anzeige').innerText = getKalenderwoche();
+    </script>
+
+</body>
 </html>
