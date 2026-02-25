@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wochennummer Widget</title>
+    <!-- Einbindung der Schriftart "Inter" von Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Importiert die Jost Font, falls vorhanden, sonst System-Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Jost:wght@900&display=swap');
-
         * {
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body, html {
@@ -17,8 +21,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            /* Verhindert Scrollbars in Notion unter allen Umständen */
-            overflow: hidden; 
+            overflow: hidden; /* Verhindert Scrollbars */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,30 +29,36 @@
         }
 
         .wochen-quadrat {
-            /* Das Quadrat füllt das gesamte Fenster aus */
-            width: 100vw;
-            height: 100vh;
+            /* Das Widget füllt den verfügbaren Platz in Notion aus */
+            width: 96vw; 
+            height: 96vh;
             
-            /* Zentrierung des Textes */
+            /* Design-Elemente */
+            background-color: #F7F7F7; /* Heller Hintergrund wie bei Notion Widgets üblich */
+            border: 0px solid #3A3838; /* Minimalistischer Rand */
+            border-radius: 12px; /* Leicht abgerundete Ecken für den modernen Look */
+            
             display: flex;
             align-items: center;
             justify-content: center;
             
-            /* Designvorgaben */
-            background-color: #DBDBDB;
-            border-top: 0px solid #AA5E5E; /* Rand hinzugefügt wie gewünscht */
-            border-bottom: 8px solid #AA5E5E; /* Rand hinzugefügt wie gewünscht */
-            border-left: 0px solid #3A3838; /* Rand hinzugefügt wie gewünscht */
-            border-right: 0px solid #3A3838; /* Rand hinzugefügt wie gewünscht */
-            color: #3A3838;
-            font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Schrift-Einstellungen identisch zu maylie.org */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-weight: 700;
+            color: #1A1A1A;
             
+            /* Responsive Schriftgröße basierend auf der kleinsten Fensterseite */
+            font-size: 18vmin; 
             
-            /* Responsive Schriftgröße: Reagiert auf die kleinere Fensterseite (vmin) */
-            font-size: 25vmin; 
-            
+            /* Der typische "engere" Look der Schrift */
+            letter-spacing: -0.04em; 
             text-align: center;
             white-space: nowrap;
+        }
+
+        /* Entfernt jegliche Scrollbar-Reste */
+        ::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
@@ -60,7 +69,7 @@
     <script>
         function getKalenderwoche() {
             const heute = new Date();
-            // ISO-8601 Standard Berechnung (Woche beginnt Montag)
+            // ISO-8601 Berechnung (Wochenstart Montag)
             const d = new Date(Date.UTC(heute.getFullYear(), heute.getMonth(), heute.getDate()));
             const dayNum = d.getUTCDay() || 7;
             d.setUTCDate(d.getUTCDate() + 4 - dayNum);
@@ -68,7 +77,7 @@
             return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
         }
 
-        // Anzeige aktualisieren
+        // Anzeige mit "KW" setzen
         document.getElementById('kw-anzeige').innerText = "KW " + getKalenderwoche();
     </script>
 
